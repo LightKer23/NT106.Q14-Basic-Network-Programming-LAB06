@@ -22,7 +22,13 @@ namespace Server
 
         private void btnSendInfo_Click(object sender, EventArgs e)
         {
-            //Broadcast($"TYPE|NOTIFICATION")
+            string content = txtContent.Text.Trim();
+            if (string.IsNullOrEmpty(content))
+                return;
+
+            string packet = $"NOTIFICATION|{content}";
+
+            server.Broadcast(packet);
         }
 
         private string GetLocalWiFiIP()

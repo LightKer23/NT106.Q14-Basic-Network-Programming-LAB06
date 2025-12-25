@@ -15,6 +15,8 @@ namespace Client
     {
         private TcpClient _client;
         private NetworkStream _stream;
+        private Thread _recvThread;
+
         public event Action<string> OnStatus;
 
         public bool Connect(string ip, int port)
@@ -22,14 +24,15 @@ namespace Client
             try
             {
                 _client = new TcpClient();
-                _client.Connect(IPAddress.Parse(ip), port);
+                _client.Connect("127.0.0.1", port);
                 _stream = _client.GetStream();
+
+                StartReceiving();
             }
             catch (SocketException)
             {
                 MessageBox.Show($"Cannot connect to server.", "Connection error");
                 return false;
-
             }
             catch (Exception ex)
             {
@@ -39,11 +42,58 @@ namespace Client
             return true;
         }
 
+        private void StartReceiving()
+        {
+            if (_recvThread != null) return;
+
+            _recvThread = new Thread(ReceiveLoop);
+            _recvThread.IsBackground = true;
+            _recvThread.Start();
+        }
+
+        private void ReceiveLoop()
+        {
+            try
+            {
+                while (_client != null && _client.Connected && _stream != null)
+                {
+                    byte[] lenBuf = new byte[4];
+                    int readLen = ReadExact(_stream, lenBuf, 0, 4);
+                    if (readLen == 0) break;
+
+                    int dataLen = BitConverter.ToInt32(lenBuf, 0);
+                    if (dataLen <= 0) continue;
+
+                    byte[] dataBuf = new byte[dataLen];
+                    int got = ReadExact(_stream, dataBuf, 0, dataLen);
+                    if (got == 0) break;
+
+                    string msg = Encoding.UTF8.GetString(dataBuf, 0, got);
+                    OnStatus?.Invoke(msg); 
+                }
+            }
+            catch (Exception ex)
+            {
+                OnStatus?.Invoke("[CLIENT] Receive error: " + ex.Message);
+            }
+        }
+
+        private static int ReadExact(NetworkStream ns, byte[] buffer, int offset, int count)
+        {
+            int total = 0;
+            while (total < count)
+            {
+                int n = ns.Read(buffer, offset + total, count - total);
+                if (n <= 0) return 0;
+                total += n;
+            }
+            return total;
+        }
+
         public void Send(string message)
         {
             try
             {
-
                 if (_client == null || !_client.Connected || _stream == null)
                 {
                     MessageBox.Show("Not connected to server. Cannot send data.", "Connection error");
@@ -57,7 +107,7 @@ namespace Client
                 _stream.Write(data, 0, data.Length);
                 _stream.Flush();
             }
-            catch (Exception ex)
+            catch
             {
                 MessageBox.Show($"Cannot connect to server.", "Connection error");
             }
@@ -69,12 +119,7 @@ namespace Client
             {
                 if (_stream != null && _client != null && _client.Connected)
                 {
-                    byte[] data = Encoding.UTF8.GetBytes("--_DISCONNECT_--");
-                    byte[] lengthPrefix = BitConverter.GetBytes(data.Length);
-
-                    _stream.Write(lengthPrefix, 0, lengthPrefix.Length);
-                    _stream.Write(data, 0, data.Length);
-                    _stream.Flush();
+                    Send("--_DISCONNECT_--");
                 }
 
                 _stream?.Close();

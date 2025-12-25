@@ -66,6 +66,39 @@ namespace Server
             }
         }
 
+
+        public void Broadcast(string message)
+        {
+            byte[] data = Encoding.UTF8.GetBytes(message);
+            byte[] lengthPrefix = BitConverter.GetBytes(data.Length);
+
+            lock (_clients)
+            {
+                for (int i = _clients.Count - 1; i >= 0; i--)
+                {
+                    var c = _clients[i];
+                    try
+                    {
+                        if (c == null || !c.Connected)
+                        {
+                            _clients.RemoveAt(i);
+                            continue;
+                        }
+
+                        var ns = c.GetStream();
+                        ns.Write(lengthPrefix, 0, lengthPrefix.Length);
+                        ns.Write(data, 0, data.Length);
+                        ns.Flush();
+                    }
+                    catch
+                    {
+                        try { c.Close(); } catch { }
+                        _clients.RemoveAt(i);
+                    }
+                }
+            }
+        }
+
         private void HandleClient(object obj)
         {
             TcpClient client = (TcpClient)obj;
