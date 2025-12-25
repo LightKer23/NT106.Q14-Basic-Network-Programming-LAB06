@@ -54,22 +54,22 @@
             // 
             // size
             // 
-            size.Location = new Point(44, 37);
+            size.Location = new Point(44, 39);
             size.Name = "size";
-            size.Size = new Size(144, 26);
+            size.Size = new Size(144, 27);
             size.TabIndex = 0;
             // 
             // date
             // 
-            date.Location = new Point(324, 37);
+            date.Location = new Point(324, 39);
             date.Name = "date";
-            date.Size = new Size(240, 26);
+            date.Size = new Size(240, 27);
             date.TabIndex = 1;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(2, 39);
+            label1.Location = new Point(2, 41);
             label1.Name = "label1";
             label1.Size = new Size(36, 20);
             label1.TabIndex = 2;
@@ -78,7 +78,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(277, 39);
+            label2.Location = new Point(277, 41);
             label2.Name = "label2";
             label2.Size = new Size(41, 20);
             label2.TabIndex = 3;
@@ -86,38 +86,39 @@
             // 
             // emailBox
             // 
-            emailBox.Location = new Point(44, 112);
+            emailBox.Location = new Point(44, 118);
             emailBox.Multiline = true;
             emailBox.Name = "emailBox";
-            emailBox.Size = new Size(552, 101);
+            emailBox.Size = new Size(552, 106);
             emailBox.TabIndex = 4;
             // 
             // access
             // 
-            access.Location = new Point(570, 37);
+            access.Location = new Point(570, 39);
             access.Name = "access";
-            access.Size = new Size(90, 28);
+            access.Size = new Size(90, 29);
             access.TabIndex = 5;
             access.Text = "Truy vấn";
             access.UseVisualStyleBackColor = true;
             // 
             // sendEmail
             // 
-            sendEmail.Location = new Point(421, 231);
+            sendEmail.Location = new Point(421, 244);
             sendEmail.Name = "sendEmail";
-            sendEmail.Size = new Size(175, 28);
+            sendEmail.Size = new Size(175, 29);
             sendEmail.TabIndex = 6;
             sendEmail.Text = "Xuất, gửi email";
             sendEmail.UseVisualStyleBackColor = true;
+            sendEmail.Click += sendEmail_Click;
             // 
             // dataGridView
             // 
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView.Columns.AddRange(new DataGridViewColumn[] { StockCode, StockName, ClosePrice, Change, PerChange });
-            dataGridView.Location = new Point(8, 277);
+            dataGridView.Location = new Point(8, 292);
             dataGridView.Name = "dataGridView";
             dataGridView.RowHeadersWidth = 49;
-            dataGridView.Size = new Size(652, 351);
+            dataGridView.Size = new Size(652, 369);
             dataGridView.TabIndex = 7;
             // 
             // StockCode
@@ -162,7 +163,7 @@
             TabControl.Location = new Point(2, 2);
             TabControl.Name = "TabControl";
             TabControl.SelectedIndex = 0;
-            TabControl.Size = new Size(741, 725);
+            TabControl.Size = new Size(741, 763);
             TabControl.TabIndex = 8;
             // 
             // TerminalTrading
@@ -175,10 +176,10 @@
             TerminalTrading.Controls.Add(access);
             TerminalTrading.Controls.Add(label1);
             TerminalTrading.Controls.Add(label2);
-            TerminalTrading.Location = new Point(4, 28);
+            TerminalTrading.Location = new Point(4, 29);
             TerminalTrading.Name = "TerminalTrading";
             TerminalTrading.Padding = new Padding(3);
-            TerminalTrading.Size = new Size(733, 693);
+            TerminalTrading.Size = new Size(733, 730);
             TerminalTrading.TabIndex = 0;
             TerminalTrading.Text = "TerminalTrading";
             TerminalTrading.UseVisualStyleBackColor = true;
@@ -186,10 +187,10 @@
             // Message
             // 
             Message.Controls.Add(systemMessage);
-            Message.Location = new Point(4, 28);
+            Message.Location = new Point(4, 29);
             Message.Name = "Message";
             Message.Padding = new Padding(3);
-            Message.Size = new Size(733, 693);
+            Message.Size = new Size(733, 730);
             Message.TabIndex = 1;
             Message.Text = "Message";
             Message.UseVisualStyleBackColor = true;
@@ -199,14 +200,14 @@
             systemMessage.FormattingEnabled = true;
             systemMessage.Location = new Point(0, 0);
             systemMessage.Name = "systemMessage";
-            systemMessage.Size = new Size(730, 688);
+            systemMessage.Size = new Size(730, 724);
             systemMessage.TabIndex = 0;
             // 
             // TradingTerminal
             // 
-            AutoScaleDimensions = new SizeF(8F, 19F);
+            AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(741, 726);
+            ClientSize = new Size(741, 764);
             Controls.Add(TabControl);
             Name = "TradingTerminal";
             Text = "Form1";
