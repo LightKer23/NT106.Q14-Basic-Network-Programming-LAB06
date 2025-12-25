@@ -29,16 +29,16 @@
         private void InitializeComponent()
         {
             groupBox1 = new GroupBox();
-            label1 = new Label();
-            label2 = new Label();
-            txtIP = new TextBox();
-            txtPort = new TextBox();
             lbConnect = new ListBox();
+            txtPort = new TextBox();
+            txtIP = new TextBox();
+            label2 = new Label();
+            label1 = new Label();
             groupBox2 = new GroupBox();
             textBox1 = new TextBox();
             groupBox3 = new GroupBox();
-            txtContent = new TextBox();
             btnSendInfo = new Button();
+            txtContent = new TextBox();
             groupBox1.SuspendLayout();
             groupBox2.SuspendLayout();
             groupBox3.SuspendLayout();
@@ -58,14 +58,29 @@
             groupBox1.TabStop = false;
             groupBox1.Text = "Kết nối";
             // 
-            // label1
+            // lbConnect
             // 
-            label1.AutoSize = true;
-            label1.Location = new Point(20, 26);
-            label1.Name = "label1";
-            label1.Size = new Size(24, 20);
-            label1.TabIndex = 0;
-            label1.Text = "IP:";
+            lbConnect.FormattingEnabled = true;
+            lbConnect.Location = new Point(20, 121);
+            lbConnect.Name = "lbConnect";
+            lbConnect.Size = new Size(282, 204);
+            lbConnect.TabIndex = 1;
+            // 
+            // txtPort
+            // 
+            txtPort.Location = new Point(82, 69);
+            txtPort.Name = "txtPort";
+            txtPort.ReadOnly = true;
+            txtPort.Size = new Size(220, 27);
+            txtPort.TabIndex = 2;
+            // 
+            // txtIP
+            // 
+            txtIP.Location = new Point(82, 23);
+            txtIP.Name = "txtIP";
+            txtIP.ReadOnly = true;
+            txtIP.Size = new Size(220, 27);
+            txtIP.TabIndex = 1;
             // 
             // label2
             // 
@@ -76,29 +91,14 @@
             label2.TabIndex = 1;
             label2.Text = "Port:";
             // 
-            // txtIP
+            // label1
             // 
-            txtIP.Location = new Point(82, 23);
-            txtIP.Name = "txtIP";
-            txtIP.ReadOnly = true;
-            txtIP.Size = new Size(220, 27);
-            txtIP.TabIndex = 1;
-            // 
-            // txtPort
-            // 
-            txtPort.Location = new Point(82, 69);
-            txtPort.Name = "txtPort";
-            txtPort.ReadOnly = true;
-            txtPort.Size = new Size(220, 27);
-            txtPort.TabIndex = 2;
-            // 
-            // lbConnect
-            // 
-            lbConnect.FormattingEnabled = true;
-            lbConnect.Location = new Point(20, 121);
-            lbConnect.Name = "lbConnect";
-            lbConnect.Size = new Size(282, 204);
-            lbConnect.TabIndex = 1;
+            label1.AutoSize = true;
+            label1.Location = new Point(20, 26);
+            label1.Name = "label1";
+            label1.Size = new Size(24, 20);
+            label1.TabIndex = 0;
+            label1.Text = "IP:";
             // 
             // groupBox2
             // 
@@ -130,13 +130,6 @@
             groupBox3.TabStop = false;
             groupBox3.Text = "Thông báo";
             // 
-            // txtContent
-            // 
-            txtContent.Location = new Point(21, 36);
-            txtContent.Name = "txtContent";
-            txtContent.Size = new Size(337, 27);
-            txtContent.TabIndex = 0;
-            // 
             // btnSendInfo
             // 
             btnSendInfo.Location = new Point(218, 77);
@@ -145,6 +138,14 @@
             btnSendInfo.TabIndex = 1;
             btnSendInfo.Text = "Gửi thông báo";
             btnSendInfo.UseVisualStyleBackColor = true;
+            btnSendInfo.Click += btnSendInfo_Click;
+            // 
+            // txtContent
+            // 
+            txtContent.Location = new Point(21, 36);
+            txtContent.Name = "txtContent";
+            txtContent.Size = new Size(337, 27);
+            txtContent.TabIndex = 0;
             // 
             // Dashboard
             // 

@@ -1,8 +1,8 @@
 namespace Client
 {
-    public partial class Form1 : Form
+    public partial class TradingTerminal : Form
     {
-        public Form1()
+        public TradingTerminal()
         {
             InitializeComponent();
         }
