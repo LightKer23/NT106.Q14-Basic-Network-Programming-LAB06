@@ -41,20 +41,27 @@
             ClosePrice = new DataGridViewTextBoxColumn();
             Change = new DataGridViewTextBoxColumn();
             PerChange = new DataGridViewTextBoxColumn();
+            TabControl = new TabControl();
+            TerminalTrading = new TabPage();
+            Message = new TabPage();
+            systemMessage = new ListBox();
             ((System.ComponentModel.ISupportInitialize)size).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView).BeginInit();
+            TabControl.SuspendLayout();
+            TerminalTrading.SuspendLayout();
+            Message.SuspendLayout();
             SuspendLayout();
             // 
             // size
             // 
-            size.Location = new Point(86, 12);
+            size.Location = new Point(44, 37);
             size.Name = "size";
             size.Size = new Size(144, 26);
             size.TabIndex = 0;
             // 
             // date
             // 
-            date.Location = new Point(366, 12);
+            date.Location = new Point(324, 37);
             date.Name = "date";
             date.Size = new Size(240, 26);
             date.TabIndex = 1;
@@ -62,7 +69,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(44, 14);
+            label1.Location = new Point(2, 39);
             label1.Name = "label1";
             label1.Size = new Size(36, 20);
             label1.TabIndex = 2;
@@ -71,7 +78,7 @@
             // label2
             // 
             label2.AutoSize = true;
-            label2.Location = new Point(319, 14);
+            label2.Location = new Point(277, 39);
             label2.Name = "label2";
             label2.Size = new Size(41, 20);
             label2.TabIndex = 3;
@@ -79,7 +86,7 @@
             // 
             // emailBox
             // 
-            emailBox.Location = new Point(86, 87);
+            emailBox.Location = new Point(44, 112);
             emailBox.Multiline = true;
             emailBox.Name = "emailBox";
             emailBox.Size = new Size(552, 101);
@@ -87,7 +94,7 @@
             // 
             // access
             // 
-            access.Location = new Point(612, 12);
+            access.Location = new Point(570, 37);
             access.Name = "access";
             access.Size = new Size(90, 28);
             access.TabIndex = 5;
@@ -96,7 +103,7 @@
             // 
             // sendEmail
             // 
-            sendEmail.Location = new Point(463, 206);
+            sendEmail.Location = new Point(421, 231);
             sendEmail.Name = "sendEmail";
             sendEmail.Size = new Size(175, 28);
             sendEmail.TabIndex = 6;
@@ -107,7 +114,7 @@
             // 
             dataGridView.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             dataGridView.Columns.AddRange(new DataGridViewColumn[] { StockCode, StockName, ClosePrice, Change, PerChange });
-            dataGridView.Location = new Point(50, 252);
+            dataGridView.Location = new Point(8, 277);
             dataGridView.Name = "dataGridView";
             dataGridView.RowHeadersWidth = 49;
             dataGridView.Size = new Size(652, 351);
@@ -148,25 +155,68 @@
             PerChange.Name = "PerChange";
             PerChange.Width = 120;
             // 
+            // TabControl
+            // 
+            TabControl.Controls.Add(TerminalTrading);
+            TabControl.Controls.Add(Message);
+            TabControl.Location = new Point(2, 2);
+            TabControl.Name = "TabControl";
+            TabControl.SelectedIndex = 0;
+            TabControl.Size = new Size(741, 725);
+            TabControl.TabIndex = 8;
+            // 
+            // TerminalTrading
+            // 
+            TerminalTrading.Controls.Add(emailBox);
+            TerminalTrading.Controls.Add(dataGridView);
+            TerminalTrading.Controls.Add(size);
+            TerminalTrading.Controls.Add(sendEmail);
+            TerminalTrading.Controls.Add(date);
+            TerminalTrading.Controls.Add(access);
+            TerminalTrading.Controls.Add(label1);
+            TerminalTrading.Controls.Add(label2);
+            TerminalTrading.Location = new Point(4, 28);
+            TerminalTrading.Name = "TerminalTrading";
+            TerminalTrading.Padding = new Padding(3);
+            TerminalTrading.Size = new Size(733, 693);
+            TerminalTrading.TabIndex = 0;
+            TerminalTrading.Text = "TerminalTrading";
+            TerminalTrading.UseVisualStyleBackColor = true;
+            // 
+            // Message
+            // 
+            Message.Controls.Add(systemMessage);
+            Message.Location = new Point(4, 28);
+            Message.Name = "Message";
+            Message.Padding = new Padding(3);
+            Message.Size = new Size(733, 693);
+            Message.TabIndex = 1;
+            Message.Text = "Message";
+            Message.UseVisualStyleBackColor = true;
+            // 
+            // systemMessage
+            // 
+            systemMessage.FormattingEnabled = true;
+            systemMessage.Location = new Point(0, 0);
+            systemMessage.Name = "systemMessage";
+            systemMessage.Size = new Size(730, 688);
+            systemMessage.TabIndex = 0;
+            // 
             // TradingTerminal
             // 
             AutoScaleDimensions = new SizeF(8F, 19F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(730, 675);
-            Controls.Add(dataGridView);
-            Controls.Add(sendEmail);
-            Controls.Add(access);
-            Controls.Add(emailBox);
-            Controls.Add(label2);
-            Controls.Add(label1);
-            Controls.Add(date);
-            Controls.Add(size);
+            ClientSize = new Size(741, 726);
+            Controls.Add(TabControl);
             Name = "TradingTerminal";
             Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)size).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView).EndInit();
+            TabControl.ResumeLayout(false);
+            TerminalTrading.ResumeLayout(false);
+            TerminalTrading.PerformLayout();
+            Message.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
@@ -184,5 +234,9 @@
         private DataGridViewTextBoxColumn ClosePrice;
         private DataGridViewTextBoxColumn Change;
         private DataGridViewTextBoxColumn PerChange;
+        private TabControl TabControl;
+        private TabPage TerminalTrading;
+        private TabPage Message;
+        private ListBox systemMessage;
     }
 }
